@@ -3,8 +3,11 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import NavBar from '@/components/NavBar.vue'
 
 Vue.config.productionTip = false
+
+Vue.component('NavBar', NavBar)
 
 new Vue({
   router,

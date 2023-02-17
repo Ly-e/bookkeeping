@@ -1,6 +1,7 @@
 <template>
     <div>
        Index.vue
+       <NavBar/>
     </div>
 </template>
 
