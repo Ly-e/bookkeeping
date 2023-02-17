@@ -36,7 +36,7 @@ const routes: Array<RouteConfig> = [
     component: StatisticsPage
   },
   {
-    path: '/notfound',
+    path: '*',
     name: 'NotFound',
     component: NotFound
   }
