@@ -1,7 +1,6 @@
 <template>
     <div>
-       DetailsPage.vue
-       <NavBar/>
+       <PageLayout>DetailsPage.vue</PageLayout>
     </div>
 </template>
 

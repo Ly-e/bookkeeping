@@ -1,7 +1,6 @@
 <template>
     <div>
-       KeepOne.vue
-       <NavBar/>
+       <PageLayout>KeepOne.vue</PageLayout>
     </div>
 </template>
 

@@ -1,7 +1,6 @@
 <template>
     <div>
-       Index.vue
-       <NavBar/>
+       <PageLayout>Index.vue</PageLayout>
     </div>
 </template>
 
