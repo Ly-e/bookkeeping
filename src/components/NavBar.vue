@@ -1,16 +1,16 @@
 <template>
     <nav>
-      <router-link to="/details" class="item">
+      <router-link to="/details" class="item" active-class="selected">
         <Icon name="details"/>
         明细
       </router-link> 
-      <router-link to="/keepone" class="item">
+      <router-link to="/keepone" class="item" active-class="selected">
         <div class="keepOne-wrapper">
           <Icon class="keepOne" name="keepone" />
         </div>
         <p class="keepOneText">记一笔</p>
       </router-link> 
-      <router-link to="/statistics" class="item">
+      <router-link to="/statistics" class="item" active-class="selected">
         <Icon name="statistics"/>
         统计
       </router-link>
@@ -60,5 +60,8 @@ nav{
         margin-top: 31px;
       }
   }
+  > .item.selected{
+        color:#E57575;
+      }
 }
 </style>
