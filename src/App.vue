@@ -11,7 +11,7 @@ body{
 }
 #app{
   font-family: $font-hei;
-  color: #333;
+  color: $color-Default;
   line-height: 1.5;
 }
 </style>
