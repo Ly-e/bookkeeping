@@ -1,7 +1,9 @@
 <template>
-    <div>
-       <PageLayout>Index.vue</PageLayout>
-    </div>
+    <PageLayout>
+        <div>本月信息栏</div>
+        <div>今日账单明细</div>
+    </PageLayout>
+    
 </template>
 
 <script>

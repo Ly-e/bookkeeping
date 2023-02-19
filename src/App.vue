@@ -5,17 +5,13 @@
 </template>
 
 <style lang="scss">
-*{
-  margin:0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "~@/assets/style/reset.scss";
+@import "~@/assets/style/helper.scss";
 body{
+}
+#app{
+  font-family: $font-hei;
+  color: #333;
   line-height: 1.5;
 }
-a{
-  text-decoration: none;
-  color: inherit;
-}
-
 </style>
