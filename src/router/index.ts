@@ -6,6 +6,7 @@ import KeepOne from '@/views/KeepOne.vue'
 import StatisticsPage from '@/views/StatisticsPage.vue'
 import DetailsPage from '@/views/DetailsPage.vue'
 import NotFound from '@/views/NotFound.vue'
+import EditPage from '@/views/EditPage.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes: Array<RouteConfig> = [
     path: '/statistics',
     name: 'StatisticsPage',
     component: StatisticsPage
+  },
+  {
+    path: '/edit',
+    name: 'EditPage',
+    component: EditPage
   },
   {
     path: '*',

@@ -28,7 +28,7 @@
 nav{
   display: flex;
   flex-direction: row;
-
+   box-shadow: 0 0 5px rgba($color-labelBackground,0.3);
   > .item{
     width: 33.333333%;
     display: flex;
@@ -52,6 +52,7 @@ nav{
         display: flex;
         justify-content: center;
         align-items: center;
+        box-shadow: 0 0 5px rgba($color-shadow,0.3);
        }
       .keepOne{
         width: 56px;
