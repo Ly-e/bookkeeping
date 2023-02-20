@@ -8,10 +8,12 @@
                         </router-link>
                    </button>
                 </li>
-                <li class="selected types">
+                <li class="types" :class="type ==='-' && 'selected'"
+                @click="selectType('-')">
                     <div>支出</div>
                 </li>
-                <li class="types">
+                <li class="types" :class="type === '+' && 'selected'"
+                @click="selectType('+')">
                     <div>收入</div>
                 </li>
                 <li>
@@ -28,7 +30,23 @@
 
 <script>
     export default {
-        
+        props:['xxx'],
+        data(){
+           return {
+              type:'-' //'-'表示支出，'+'表示收入
+           }
+        },
+        mounted(){
+            console.log(this.xxx)
+        },
+        methods:{
+            selectType(type){ // type 只能是 '-'、'+'中的一个
+               if(type!=='-'&&type!=='+'){
+                   throw new Error('type is unknown')
+               }
+                this.type = type
+            }
+        }
     }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        <top-bar/>
+        <top-bar xxx="hi"/>
         <tags-bar/>
         <add-bar/>
     </div>
