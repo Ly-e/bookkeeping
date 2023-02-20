@@ -52,7 +52,7 @@ nav{
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: 0 0 5px rgba($color-shadow,0.3);
+        box-shadow: 0 0 5px rgba($color-labelBackground,0.3);
        }
       .keepOne{
         width: 56px;
