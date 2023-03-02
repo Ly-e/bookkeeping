@@ -4,35 +4,75 @@
       <Icon name="remark" />
       <span class="name">备注</span>
       <input type="text" placeholder="请输入备注" />
-      <div class="output">100</div>
+      <div class="output">{{ output }}</div>
     </label>
     <div class="numberPad">
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button class="big">
+      <button @click="inputContent">1</button>
+      <button @click="inputContent">2</button>
+      <button @click="inputContent">3</button>
+      <button class="big" @click="backspace">
         <Icon name="backspace" />
       </button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>+</button>
-      <button>-</button>
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button>x</button>
-      <button>÷</button>
-      <button>%</button>
-      <button>0</button>
-      <button>.</button>
-      <button class="big ok">确定</button>
+      <button @click="inputContent">4</button>
+      <button @click="inputContent">5</button>
+      <button @click="inputContent">6</button>
+      <button @click="add">+</button>
+      <button @click="reduce">-</button>
+      <button @click="inputContent">7</button>
+      <button @click="inputContent">8</button>
+      <button @click="inputContent">9</button>
+      <button @click="multiply">x</button>
+      <button @click="divide">÷</button>
+      <button @click="clear">清空</button>
+      <button @click="inputContent">0</button>
+      <button @click="inputContent">.</button>
+      <button class="big ok" @click="ok">确定</button>
     </div>
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
+
+@Component
+export default class extends Vue {
+  output: string = "0";
+  inputContent(event: MouseEvent) {
+    const button = event.target as HTMLButtonElement;
+    const input = button.textContent!;
+    if (this.output.length === 10) {
+      return;
+    }
+    if (this.output === "0") {
+      if ("0123456789".indexOf(input) >= 0) {
+        this.output = input;
+      } else {
+        this.output += input;
+      }
+      return;
+    } else if (this.output.indexOf(".") >= 0 && input === ".") {
+      return;
+    } else {
+      this.output += input;
+    }
+  }
+  backspace() {
+    if (this.output.length === 1) {
+      this.output = "0";
+    } else {
+      this.output = this.output.slice(0, -1);
+    }
+  }
+  clear() {
+    this.output = "0";
+  }
+  add() {}
+  reduce() {}
+  multiply() {}
+  divide() {}
+  ok() {}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -56,12 +96,12 @@ export default {};
     }
   }
   input {
-    height: 40px;
     flex-grow: 3;
     background: transparent;
     border: none;
   }
   .output {
+    height: 30px;
     margin: 16px;
     font-size: 18px;
     font-family: Consolas, monospace;
