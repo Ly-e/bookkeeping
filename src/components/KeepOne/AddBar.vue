@@ -16,13 +16,13 @@
       <button @click="inputContent">4</button>
       <button @click="inputContent">5</button>
       <button @click="inputContent">6</button>
-      <button @click="add">+</button>
-      <button @click="reduce">-</button>
+      <button @click="calculate">+</button>
+      <button @click="calculate">-</button>
       <button @click="inputContent">7</button>
       <button @click="inputContent">8</button>
       <button @click="inputContent">9</button>
-      <button @click="multiply">x</button>
-      <button @click="divide">÷</button>
+      <button @click="calculate">x</button>
+      <button @click="calculate">÷</button>
       <button @click="clear">清空</button>
       <button @click="inputContent">0</button>
       <button @click="inputContent">.</button>
@@ -67,10 +67,7 @@ export default class extends Vue {
   clear() {
     this.output = "0";
   }
-  add() {}
-  reduce() {}
-  multiply() {}
-  divide() {}
+  calculate() {}
   ok() {}
 }
 </script>
