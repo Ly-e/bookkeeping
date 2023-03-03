@@ -3,7 +3,12 @@
     <label class="notes">
       <Icon name="remark" />
       <span class="name">备注</span>
-      <input type="text" placeholder="请输入备注" />
+      <input
+        type="text"
+        :value="notesValue"
+        @input="onChange"
+        placeholder="请输入备注"
+      />
       <div class="output">{{ output }}</div>
     </label>
     <div class="numberPad">
@@ -36,7 +41,7 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 
 @Component
-export default class extends Vue {
+export default class AddBar extends Vue {
   output: string = "0";
   inputContent(event: MouseEvent) {
     const button = event.target as HTMLButtonElement;
@@ -69,6 +74,11 @@ export default class extends Vue {
   }
   calculate() {}
   ok() {}
+  notesValue: string = "";
+  onChange(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    this.notesValue = input.value;
+  }
 }
 </script>
 
