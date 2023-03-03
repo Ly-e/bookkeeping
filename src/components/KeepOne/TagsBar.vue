@@ -1,46 +1,23 @@
 <template>
   <div class="tagsBar">
     <ul class="tags">
-      <li>
+      <li
+        v-for="(item, index) in dataSource"
+        :key="index"
+        :class="{ selected: selectedTags.indexOf(index) >= 0 }"
+        @click="select(index)"
+      >
         <div class="tagsIcon">
-          <Icon name="others" />
+          <Icon :name="`${item.icon}`" />
         </div>
-        <p>其他</p>
+        {{ item.name }}
       </li>
       <li>
-        <div class="tagsIcon">
-          <Icon name="shopping" />
+        <div class="addTag">
+          <button class="tagsIcon addButton">
+            <Icon name="keepone" />
+          </button>
         </div>
-        <p>购物消费</p>
-      </li>
-      <li>
-        <div class="tagsIcon">
-          <Icon name="food" />
-        </div>
-        <p>美食餐饮</p>
-      </li>
-      <li>
-        <div class="tagsIcon">
-          <Icon name="transportation" />
-        </div>
-        <p>交通出行</p>
-      </li>
-      <li>
-        <div class="tagsIcon">
-          <Icon name="entertainment" />
-        </div>
-        <p>休闲娱乐</p>
-      </li>
-      <li>
-        <div class="tagsIcon">
-          <Icon name="medicalSupplies" />
-        </div>
-        <p>医疗健康</p>
-      </li>
-      <li class="addTag">
-        <button class="tagsIcon addButton">
-          <Icon name="keepone" />
-        </button>
         <p>新增</p>
       </li>
     </ul>
@@ -53,7 +30,12 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 
 @Component
-export default class extends Vue {
+export default class TagsBar extends Vue {
+  @Prop(Array) dataSource: [] | undefined;
+  selectedTags: Array<any> = [];
+  select(tag: object) {
+    this.selectedTags.push(tag);
+  }
 }
 </script>
 
@@ -78,6 +60,11 @@ export default class extends Vue {
       width: 20%;
       height: 20%;
       color: $color-lightFont;
+      &.selected {
+        .tagsIcon {
+          background-color: $color-labelSelected;
+        }
+      }
       .tagsIcon {
         background-color: $color-labelBackground;
         border-radius: 50%;
