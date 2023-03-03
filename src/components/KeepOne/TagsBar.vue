@@ -5,7 +5,7 @@
         v-for="(item, index) in dataSource"
         :key="index"
         :class="{ selected: selectedTags.indexOf(index) >= 0 }"
-        @click="select(index)"
+        @click="toggle(index)"
       >
         <div class="tagsIcon">
           <Icon :name="`${item.icon}`" />
@@ -31,10 +31,15 @@ import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class TagsBar extends Vue {
-  @Prop(Array) dataSource: [] | undefined;
+  @Prop(Array) readonly dataSource: [] | undefined;
   selectedTags: Array<any> = [];
-  select(tag: object) {
-    this.selectedTags.push(tag);
+  toggle(tag: object) {
+    const index = this.selectedTags.indexOf(tag);
+    if (index >= 0) {
+      this.selectedTags.splice(index, 1);
+    } else {
+      this.selectedTags.push(tag);
+    }
   }
 }
 </script>
