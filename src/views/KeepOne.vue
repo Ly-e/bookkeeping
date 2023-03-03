@@ -1,7 +1,5 @@
 <template>
   <div class="page">
-    {{ record }}
-    {{ recordsList }}
     <top-bar :value.sync="record.type" />
     <tags-bar :data-source="tags" @update:value="onUpdateTags" />
     <add-bar
@@ -18,14 +16,9 @@ import TopBar from "@/components/KeepOne/TopBar.vue";
 import TagsBar from "@/components/KeepOne/TagsBar.vue";
 import AddBar from "@/components/KeepOne/AddBar.vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
+import model from "@/model";
 
-type Record = {
-  tags: [];
-  notes: string;
-  type: string;
-  amount: number;
-  createdAt?: Date;
-};
+const recordsList = model.fetch();
 
 @Component({
   components: { TopBar, TagsBar, AddBar },
@@ -57,10 +50,8 @@ export default class KeepOne extends Vue {
       icon: "medicalSupplies",
     },
   ];
-  record: Record = { tags: [], notes: "", type: "-", amount: 0 };
-  recordsList: Record[] = JSON.parse(
-    window.localStorage.getItem("recordsList") || "[]"
-  );
+  record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
+  recordsList: RecordItem[] = recordsList;
 
   onUpdateTags(tags: []) {
     console.log(tags);
@@ -73,16 +64,13 @@ export default class KeepOne extends Vue {
     this.record.amount = parseFloat(value);
   }
   saveRecord() {
-    const record2: Record = JSON.parse(JSON.stringify(this.record));
+    const record2: RecordItem = model.clone(this.record);
     record2.createdAt = new Date();
     this.recordsList.push(record2);
   }
   @Watch("recordsList")
   onRecordListChanged() {
-    window.localStorage.setItem(
-      "recordsList",
-      JSON.stringify(this.recordsList)
-    );
+    model.save(this.recordsList);
   }
 }
 </script>
