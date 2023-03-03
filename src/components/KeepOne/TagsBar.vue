@@ -64,6 +64,9 @@ export default class TagsBar extends Vue {
         .tagsIcon {
           background-color: $color-labelSelected;
         }
+        .icon {
+          color: white;
+        }
       }
       .tagsIcon {
         background-color: $color-labelBackground;
