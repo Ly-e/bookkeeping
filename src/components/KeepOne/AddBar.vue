@@ -38,10 +38,11 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class AddBar extends Vue {
+  //numberPad
   output: string = "0";
   inputContent(event: MouseEvent) {
     const button = event.target as HTMLButtonElement;
@@ -73,8 +74,17 @@ export default class AddBar extends Vue {
     this.output = "0";
   }
   calculate() {}
-  ok() {}
+  ok() {
+    this.$emit("update:value", this.output);
+  }
+
+  //notes
   notesValue: string = "";
+  @Watch("notesValue")
+  onNotesValueChanged(value: string) {
+    this.$emit("update:notes", value);
+  }
+
   onChange(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
     this.notesValue = input.value;

@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
 import Index from '@/views/Index.vue'
 import KeepOne from '@/views/KeepOne.vue'
 import StatisticsPage from '@/views/StatisticsPage.vue'
 import DetailsPage from '@/views/DetailsPage.vue'
 import NotFound from '@/views/NotFound.vue'
 import EditPage from '@/views/EditPage.vue'
+import AddTags from '@/views/AddTags.vue'
 
 Vue.use(VueRouter)
 
@@ -40,6 +40,11 @@ const routes: Array<RouteConfig> = [
     path: '/edit',
     name: 'EditPage',
     component: EditPage
+  },
+  {
+    path:'/addtags',
+    name:'AddTags',
+    component:AddTags
   },
   {
     path: '*',
