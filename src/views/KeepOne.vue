@@ -3,7 +3,11 @@
     {{ record }}
     <top-bar :value.sync="record.type" />
     <tags-bar :data-source="tags" @update:value="onUpdateTags" />
-    <add-bar @update:notes="onUpdateNotes" @update:value="onUpdateAmount" />
+    <add-bar
+      @update:notes="onUpdateNotes"
+      @update:value="onUpdateAmount"
+      @submit="saveRecord"
+    />
   </div>
 </template>
 
@@ -12,7 +16,7 @@ import Vue from "vue";
 import TopBar from "@/components/KeepOne/TopBar.vue";
 import TagsBar from "@/components/KeepOne/TagsBar.vue";
 import AddBar from "@/components/KeepOne/AddBar.vue";
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
 
 type Record = {
   tags: [];
@@ -52,6 +56,7 @@ export default class KeepOne extends Vue {
     },
   ];
   record: Record = { tags: [], notes: "", type: "-", amount: 0 };
+  recordsList: Record[] = [];
 
   onUpdateTags(tags: []) {
     console.log(tags);
@@ -62,6 +67,17 @@ export default class KeepOne extends Vue {
   }
   onUpdateAmount(value: string) {
     this.record.amount = parseFloat(value);
+  }
+  saveRecord() {
+    const record2 = JSON.parse(JSON.stringify(this.record));
+    this.recordsList.push(record2);
+  }
+  @Watch("recordsList")
+  onRecordListChanged() {
+    window.localStorage.setItem(
+      "recordsList",
+      JSON.stringify(this.recordsList)
+    );
   }
 }
 </script>
