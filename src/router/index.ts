@@ -7,6 +7,7 @@ import DetailsPage from '@/views/DetailsPage.vue'
 import NotFound from '@/views/NotFound.vue'
 import EditPage from '@/views/EditPage.vue'
 import AddTags from '@/views/AddTags.vue'
+import LabelDetails from '@/views/LabelDetails.vue'
 
 Vue.use(VueRouter)
 
@@ -42,9 +43,14 @@ const routes: Array<RouteConfig> = [
     component: EditPage
   },
   {
-    path:'/addtags',
-    name:'AddTags',
-    component:AddTags
+    path: '/addtags',
+    name: 'AddTags',
+    component: AddTags
+  },
+  {
+    path: '/labeldetails',
+    name: 'LabelDetails',
+    component: LabelDetails
   },
   {
     path: '*',
