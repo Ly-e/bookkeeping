@@ -76,7 +76,8 @@ export default class AddBar extends Vue {
   calculate() {}
   ok() {
     this.$emit("update:value", this.output);
-    this.$emit("submit",this.output);
+    this.$emit("submit", this.output);
+    this.output = "0";
   }
 
   //notes

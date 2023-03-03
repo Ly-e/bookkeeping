@@ -1,6 +1,7 @@
 <template>
   <div class="page">
     {{ record }}
+    {{ recordsList }}
     <top-bar :value.sync="record.type" />
     <tags-bar :data-source="tags" @update:value="onUpdateTags" />
     <add-bar
@@ -23,6 +24,7 @@ type Record = {
   notes: string;
   type: string;
   amount: number;
+  createdAt?: Date;
 };
 
 @Component({
@@ -56,7 +58,9 @@ export default class KeepOne extends Vue {
     },
   ];
   record: Record = { tags: [], notes: "", type: "-", amount: 0 };
-  recordsList: Record[] = [];
+  recordsList: Record[] = JSON.parse(
+    window.localStorage.getItem("recordsList") || "[]"
+  );
 
   onUpdateTags(tags: []) {
     console.log(tags);
@@ -69,7 +73,8 @@ export default class KeepOne extends Vue {
     this.record.amount = parseFloat(value);
   }
   saveRecord() {
-    const record2 = JSON.parse(JSON.stringify(this.record));
+    const record2: Record = JSON.parse(JSON.stringify(this.record));
+    record2.createdAt = new Date();
     this.recordsList.push(record2);
   }
   @Watch("recordsList")
