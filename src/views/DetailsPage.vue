@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <PageLayout>
-      <top-bar/>
-      <category-list/>
+      <top-bar> 账单明细 </top-bar>
+      <category-list />
     </PageLayout>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
-import TopBar from "@/components/DetailsPage/TopBar.vue";
+import TopBar from "@/components/TopBar.vue";
 import CategoryList from "@/components/DetailsPage/CategoryList.vue";
 
 @Component({

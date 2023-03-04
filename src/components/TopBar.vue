@@ -3,7 +3,7 @@
     <router-link to="/index">
       <Icon name="back" />
     </router-link>
-    <span class="text">账单明细</span>
+    <span class="text"><slot/></span>
     <div></div>
   </div>
 </template>
