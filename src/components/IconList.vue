@@ -8,7 +8,7 @@
         @click="toggle(item)"
       >
         <div class="tagsIcon">
-          <Icon :name="`${item.icon}`" />
+          <Icon :name="`${item}`" />
         </div>
       </li>
     </ul>

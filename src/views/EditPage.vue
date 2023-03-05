@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar> 编辑标签 </top-bar>
+    <top-bar :link="link"> 编辑标签 </top-bar>
   </div>
 </template>
 
@@ -11,7 +11,9 @@ import TopBar from "@/components/TopBar.vue";
 @Component({
   components: { TopBar },
 })
-export default class EditPage extends Vue {}
+export default class EditPage extends Vue {
+  link: string = "/keepone";
+}
 </script>
 
 <style lang="scss" scoped>

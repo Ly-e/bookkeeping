@@ -2,14 +2,20 @@
   <div class="page">
     <top-bar :link="link">
       新增标签
-      <button class="ok">
+      <button class="ok" @click="createTag">
         <Icon name="ok" />
       </button>
     </top-bar>
     <div class="tagData">
       <div class="input-wrapper">
+        {{ value }}
         <span>标签名称</span>
-        <input type="text" placeholder="请输入标签名称" />
+        <input
+          type="text"
+          v-model="value"
+          @update:value="onUpdateTagName"
+          placeholder="请输入标签名称"
+        />
       </div>
       <div class="output-wrapper">
         <span>标签图标</span>
@@ -18,7 +24,7 @@
         </div>
       </div>
     </div>
-    <IconList :dataSource="tagsList" />
+    <IconList :dataSource="iconList" @update:value="onUpdateIcon" />
     <button class="deleteTag">删 除 标 签</button>
   </div>
 </template>
@@ -28,44 +34,43 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
+import tagListModel from "@/models/tagListModel";
+
+tagListModel.fetch();
 @Component({
   components: { TopBar, IconList },
 })
 export default class CreateTag extends Vue {
+  tags = tagListModel.data;
   link: string = "/labeldetails";
   output: string = "请选择标签图标";
-  tagsList = [
-    {
-      name: "购物消费",
-      icon: "shopping",
-      link: "/labelstatistics",
-    },
-    {
-      name: "美食餐饮",
-      icon: "food",
-      link: "/labelstatistics",
-    },
-    {
-      name: "交通出行",
-      icon: "transportation",
-      link: "/labelstatistics",
-    },
-    {
-      name: "休闲娱乐",
-      icon: "entertainment",
-      link: "/labelstatistics",
-    },
-    {
-      name: "医疗健康",
-      icon: "medicalSupplies",
-      link: "/labelstatistics",
-    },
-    {
-      name: "其他",
-      icon: "others",
-      link: "/labelstatistics",
-    },
+  iconList: string[] = [
+    "shopping",
+    "food",
+    "transportation",
+    "entertainment",
+    "medicalSupplies",
+    "others",
   ];
+  value: string = "";
+  @Watch("value")
+  onNotesValueChanged(value: string) {
+    this.$emit("update:vlaue", value);
+  }
+  onUpdateTagName(name: string) {
+    console.log(name);
+  }
+  icon: string = "";
+  onUpdateIcon(icon: string) {
+    this.icon = icon;
+  }
+  createTag() {
+    const name = this.value;
+    const icon = this.icon;
+    if (name) {
+      tagListModel.create(name, icon);
+    }
+  }
 }
 </script>
 

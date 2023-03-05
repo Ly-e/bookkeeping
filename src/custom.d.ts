@@ -1,5 +1,10 @@
+type TagItem = {
+    name: string;
+    icon: string;
+    link?: string;
+}
 type RecordItem = {
-    tags: [];
+    tags: TagItem[];
     notes: string;
     type: string;
     amount: number;

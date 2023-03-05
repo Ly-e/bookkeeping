@@ -2,7 +2,7 @@ const localStorageKeyName = 'tagList';
 type TagListModel = {
     data: Array<any>
     fetch: () => string[]
-    create: (tagData: []) => []
+    create: (name: string, icon: string) => TagItem
     save: () => void
 }
 const tagListModel: TagListModel = {
@@ -19,10 +19,14 @@ const tagListModel: TagListModel = {
             JSON.stringify(this.data)
         );
     },
-    create(tagData: []) {
-        this.data.push(tagData);
+    create(name: string, icon: string) {
+        const x: TagItem = {
+            name: name,
+            icon: icon,
+        }
+        this.data.push(x);
         this.save();
-        return tagData;
+        return x;
     }
 };
 export default tagListModel;
