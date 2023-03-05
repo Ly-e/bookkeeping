@@ -63,7 +63,7 @@ export default class CreateTag extends Vue {
   onUpdateIcon(icon: string) {
     this.icon = icon;
   }
-  
+
   createTag() {
     const name = this.value;
     const icon = this.icon;
@@ -75,6 +75,10 @@ export default class CreateTag extends Vue {
         window.alert("添加成功！");
         this.$router.push("/labeldetails");
       }
+    } else if (!name) {
+      window.alert("请输入标签名！");
+    } else if (icon === "") {
+      window.alert("请选择标签图标！");
     }
   }
 }
