@@ -8,7 +8,6 @@
     </top-bar>
     <div class="tagData">
       <div class="input-wrapper">
-        {{ value }}
         <span>标签名称</span>
         <input
           type="text"
@@ -64,11 +63,18 @@ export default class CreateTag extends Vue {
   onUpdateIcon(icon: string) {
     this.icon = icon;
   }
+  
   createTag() {
     const name = this.value;
     const icon = this.icon;
-    if (name) {
-      tagListModel.create(name, icon);
+    if (name && icon) {
+      const message = tagListModel.create(name, icon);
+      if (message === "duplicated") {
+        window.alert("标签名重复，请重新输入！");
+      } else if (message === "success") {
+        window.alert("添加成功！");
+        this.$router.push("/labeldetails");
+      }
     }
   }
 }
