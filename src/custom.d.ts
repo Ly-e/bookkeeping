@@ -1,7 +1,7 @@
 type TagItem = {
+    id: string;
     name: string;
     icon: string;
-    link?: string;
 }
 type RecordItem = {
     tags: TagItem[];

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <top-bar :link="link"> 按标签查看 </top-bar>
+    <top-bar :link="link"> 查看标签 </top-bar>
     <tags-list :data-source="tags" />
     <button class="createTag" @click="goCreateTag">新 增 标 签</button>
   </div>

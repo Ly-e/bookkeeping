@@ -1,7 +1,7 @@
 <template>
   <div class="tagsList">
     <router-link
-      :to="`${item.link}`"
+      :to="`/edit/${item.id}`"
       class="tags-wrapper"
       v-for="(item, index) in dataSource"
       :key="index"

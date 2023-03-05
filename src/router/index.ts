@@ -10,6 +10,7 @@ import AddTags from '@/views/AddTags.vue'
 import LabelDetails from '@/views/LabelDetails.vue'
 import LabelStatistics from '@/views/LabelStatistics.vue'
 import CreateTag from '@/views/CreateTag.vue'
+import EditDetails from '@/views/EditDetails.vue'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
@@ -42,6 +43,11 @@ const routes: Array<RouteConfig> = [
     path: '/edit',
     name: 'EditPage',
     component: EditPage
+  },
+  {
+    path: '/edit/:id',
+    name: 'EditDetails',
+    component: EditDetails
   },
   {
     path: '/addtags',

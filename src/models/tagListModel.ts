@@ -1,7 +1,7 @@
 const localStorageKeyName = 'tagList';
 type TagListModel = {
-    data: Array<any>
-    fetch: () => string[]
+    data: TagItem[]
+    fetch: () => TagItem[]
     create: (name: string, icon: string) => 'success' | 'duplicated'
     save: () => void
 }
@@ -21,6 +21,7 @@ const tagListModel: TagListModel = {
     },
     create(name: string, icon: string) {
         const x: TagItem = {
+            id: name,
             name: name,
             icon: icon,
         }

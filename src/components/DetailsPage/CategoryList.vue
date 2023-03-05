@@ -2,22 +2,10 @@
   <div class="categoryList">
     <router-link to="/labeldetails">
       <div class="categories">
-        <span class="name">按标签查看</span>
+        <span class="name">查看标签</span>
         <Icon name="right" />
       </div>
     </router-link>
-    <div class="categories">
-      <span class="name">按日查看</span>
-      <Icon name="right" />
-    </div>
-    <div class="categories">
-      <span class="name">按月查看</span>
-      <Icon name="right" />
-    </div>
-    <div class="categories">
-      <span class="name">按年查看</span>
-      <Icon name="right" />
-    </div>
   </div>
 </template>
 

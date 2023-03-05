@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <PageLayout>
-      <top-bar :link="link"> 账单明细 </top-bar>
+      <top-bar :link="link"> 标签 </top-bar>
       <category-list />
     </PageLayout>
   </div>

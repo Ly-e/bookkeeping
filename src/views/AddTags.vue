@@ -24,7 +24,6 @@
       </div>
     </div>
     <IconList :dataSource="iconList" @update:value="onUpdateIcon" />
-    <button class="deleteTag">删 除 标 签</button>
   </div>
 </template>
 
@@ -144,15 +143,6 @@ export default class CreateTag extends Vue {
         color: $color-lightFont;
       }
     }
-  }
-  .deleteTag {
-    margin: 10px 30px;
-    border: none;
-    background-color: $color-labelSelected;
-    border-radius: 5px;
-    min-height: 40px;
-    font-size: 16px;
-    color: white;
   }
 }
 </style>
