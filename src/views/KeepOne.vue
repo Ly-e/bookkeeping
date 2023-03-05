@@ -20,13 +20,13 @@ import recordListModel from "@/models/recordListModel";
 import tagListModel from "@/models/tagListModel";
 
 const recordsList = recordListModel.fetch();
-const tagList = tagListModel.fetch();
+tagListModel.fetch();
 
 @Component({
   components: { TopBar, TagsBar, AddBar },
 })
 export default class KeepOne extends Vue {
-  tags = tagList;
+  tags = tagListModel.data;
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
   recordsList: RecordItem[] = recordsList;
 
