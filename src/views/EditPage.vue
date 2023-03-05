@@ -1,15 +1,18 @@
 <template>
-    <div>
-      EditPage.vue
-    </div>
+  <div>
+    <top-bar> 编辑标签 </top-bar>
+  </div>
 </template>
 
-<script>
-    export default {
-        
-    }
+<script lang="ts">
+import Vue from "vue";
+import { Component, Prop, Watch } from "vue-property-decorator";
+import TopBar from "@/components/TopBar.vue";
+@Component({
+  components: { TopBar },
+})
+export default class EditPage extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-
 </style>

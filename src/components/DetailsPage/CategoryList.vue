@@ -30,6 +30,8 @@ export default {};
 .categoryList {
   margin-top: 20px;
   .categories {
+    margin-right: 7px;
+    margin-left: 7px;
     background: white;
     min-height: 54px;
     display: flex;

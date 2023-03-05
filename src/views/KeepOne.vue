@@ -16,40 +16,17 @@ import TopBar from "@/components/KeepOne/TopBar.vue";
 import TagsBar from "@/components/KeepOne/TagsBar.vue";
 import AddBar from "@/components/KeepOne/AddBar.vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
-import model from "@/model";
+import recordListModel from "@/models/recordListModel";
+import tagListModel from "@/models/tagListModel";
 
-const recordsList = model.fetch();
+const recordsList = recordListModel.fetch();
+const tagList = tagListModel.fetch();
 
 @Component({
   components: { TopBar, TagsBar, AddBar },
 })
 export default class KeepOne extends Vue {
-  tags = [
-    {
-      name: "其他",
-      icon: "others",
-    },
-    {
-      name: "购物消费",
-      icon: "shopping",
-    },
-    {
-      name: "美食餐饮",
-      icon: "food",
-    },
-    {
-      name: "交通出行",
-      icon: "transportation",
-    },
-    {
-      name: "休闲娱乐",
-      icon: "entertainment",
-    },
-    {
-      name: "医疗健康",
-      icon: "medicalSupplies",
-    },
-  ];
+  tags = tagList;
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
   recordsList: RecordItem[] = recordsList;
 
@@ -64,13 +41,13 @@ export default class KeepOne extends Vue {
     this.record.amount = parseFloat(value);
   }
   saveRecord() {
-    const record2: RecordItem = model.clone(this.record);
+    const record2: RecordItem = recordListModel.clone(this.record);
     record2.createdAt = new Date();
     this.recordsList.push(record2);
   }
   @Watch("recordsList")
   onRecordListChanged() {
-    model.save(this.recordsList);
+    recordListModel.save(this.recordsList);
   }
 }
 </script>

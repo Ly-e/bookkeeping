@@ -9,7 +9,7 @@ import EditPage from '@/views/EditPage.vue'
 import AddTags from '@/views/AddTags.vue'
 import LabelDetails from '@/views/LabelDetails.vue'
 import LabelStatistics from '@/views/LabelStatistics.vue'
-
+import CreateTag from '@/views/CreateTag.vue'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
@@ -57,6 +57,11 @@ const routes: Array<RouteConfig> = [
     path: '/labelstatistics',
     name: 'LabelStatistics',
     component: LabelStatistics
+  },
+  {
+    path: '/createtag',
+    name: 'CreateTag',
+    component: CreateTag
   },
   {
     path: '*',

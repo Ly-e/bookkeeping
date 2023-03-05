@@ -28,7 +28,6 @@ export default class TagsList extends Vue {
 $icon-width: 24px;
 $icon-height: 24px;
 .tagsList {
-  flex: 1;
   margin-top: 20px;
   .tags-wrapper {
     display: flex;
