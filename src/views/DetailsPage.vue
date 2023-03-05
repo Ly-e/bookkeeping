@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <PageLayout>
-      <top-bar> 账单明细 </top-bar>
+      <top-bar :link="link"> 账单明细 </top-bar>
       <category-list />
     </PageLayout>
   </div>
@@ -16,7 +16,9 @@ import CategoryList from "@/components/DetailsPage/CategoryList.vue";
 @Component({
   components: { TopBar, CategoryList },
 })
-export default class DetailsPage extends Vue {}
+export default class DetailsPage extends Vue {
+  link: string = "/index";
+}
 </script>
 
 <style lang="scss" scoped>

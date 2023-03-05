@@ -1,15 +1,20 @@
 <template>
   <div class="top-wrapper">
-    <router-link to="/index">
+    <router-link :to="`${link}`">
       <Icon name="back" />
     </router-link>
-    <span class="text"><slot/></span>
+    <span class="text"><slot /></span>
     <div></div>
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import Vue from "vue";
+import { Component, Prop, Watch } from "vue-property-decorator";
+@Component
+export default class TopBar extends Vue {
+  @Prop(String) readonly link: "" | undefined;
+}
 </script>
 
 <style lang="scss" scoped>
