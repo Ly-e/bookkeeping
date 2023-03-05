@@ -19,32 +19,32 @@ export default class LabelDetails extends Vue {
     {
       name: "购物消费",
       icon: "shopping",
-      link: "/index",
+      link: "/labelstatistics",
     },
     {
       name: "美食餐饮",
       icon: "food",
-      link: "/index",
+      link: "/labelstatistics",
     },
     {
       name: "交通出行",
       icon: "transportation",
-      link: "/index",
+      link: "/labelstatistics",
     },
     {
       name: "休闲娱乐",
       icon: "entertainment",
-      link: "/index",
+      link: "/labelstatistics",
     },
     {
       name: "医疗健康",
       icon: "medicalSupplies",
-      link: "/index",
+      link: "/labelstatistics",
     },
     {
       name: "其他",
       icon: "others",
-      link: "/index",
+      link: "/labelstatistics",
     },
   ];
 }

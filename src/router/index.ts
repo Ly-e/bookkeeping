@@ -8,6 +8,7 @@ import NotFound from '@/views/NotFound.vue'
 import EditPage from '@/views/EditPage.vue'
 import AddTags from '@/views/AddTags.vue'
 import LabelDetails from '@/views/LabelDetails.vue'
+import LabelStatistics from '@/views/LabelStatistics.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes: Array<RouteConfig> = [
     path: '/labeldetails',
     name: 'LabelDetails',
     component: LabelDetails
+  },
+  {
+    path: '/labelstatistics',
+    name: 'LabelStatistics',
+    component: LabelStatistics
   },
   {
     path: '*',
