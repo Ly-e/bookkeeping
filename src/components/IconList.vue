@@ -4,7 +4,7 @@
       <li
         v-for="(item, index) in dataSource"
         :key="index"
-        :class="{ selected: selectedTags.indexOf(item) >= 0 }"
+        :class="{ selected: selectedIcon.indexOf(item) >= 0 }"
         @click="toggle(item)"
       >
         <div class="tagsIcon">
@@ -22,15 +22,18 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class IconList extends Vue {
   @Prop(Array) readonly dataSource: [] | undefined;
-  selectedTags: Array<any> = [];
-  toggle(tag: string) {
-    const index = this.selectedTags.indexOf(tag);
+  selectedIcon: Array<any> = [];
+  toggle(icon: string) {
+    const index = this.selectedIcon.indexOf(icon);
     if (index >= 0) {
-      this.selectedTags.splice(index, 1);
+      this.selectedIcon.splice(index, 1);
+    } else if (this.selectedIcon[0]) {
+      this.selectedIcon.splice(0, 1);
+      this.selectedIcon.push(icon);
     } else {
-      this.selectedTags.push(tag);
+      this.selectedIcon.push(icon);
     }
-    this.$emit("update:value", this.selectedTags);
+    this.$emit("update:value", this.selectedIcon);
   }
 }
 </script>
