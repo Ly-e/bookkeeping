@@ -2,26 +2,13 @@
   <div class="page">
     <top-bar :link="link">
       编辑标签
-      <button class="ok" @click="editTag">
+      <button class="ok" @click="ok">
         <Icon name="ok" />
       </button>
     </top-bar>
-    <div class="tagData">
-      <div class="tagName">
-        <span>标签名称</span>
-        <input
-          type="text"
-          v-model="value"
-          @update:value="onUpdateTagName"
-          placeholder="请输入标签名称"
-        />
-      </div>
-      <div class="tagIcon">
-        <span>标签图标</span>
-        <div class="output"></div>
-      </div>
-    </div>
-    <icon-list :dataSource="iconList" @update:value="onUpdateIcon" />
+    <tag-data :value="tag.name">
+      <Icon :name="tag.icon" />
+    </tag-data>
     <button class="deleteTag">删 除 标 签</button>
   </div>
 </template>
@@ -32,14 +19,13 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
 import tagListModel from "@/models/tagListModel";
+import TagData from "@/components/TagData.vue";
 @Component({
-  components: { TopBar, IconList },
+  components: { TopBar, TagData, IconList },
 })
 export default class EditDetails extends Vue {
+  tag?: TagItem = undefined;
   link: string = "/edit";
-  tags = tagListModel.fetch();
-  value: string = "";
-  icon: string = "";
   iconList: string[] = [
     "shopping",
     "food",
@@ -48,9 +34,7 @@ export default class EditDetails extends Vue {
     "medicalSupplies",
     "others",
   ];
-  onUpdateIcon(icon: string) {
-    this.icon = icon;
-  }
+  ok() {}
   created() {
     const id = this.$route.params.id;
     tagListModel.fetch();
@@ -58,6 +42,7 @@ export default class EditDetails extends Vue {
     const tag = tags.filter((t) => t.id === id)[0];
     if (tag) {
       console.log(tag);
+      this.tag = tag;
     } else {
       this.$router.replace("/404");
     }
@@ -81,50 +66,6 @@ export default class EditDetails extends Vue {
     border: none;
     background: transparent;
     color: $color-Default;
-  }
-  .tagData {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba($color-shadow, 0.3);
-    margin-top: 20px;
-    margin-left: 7px;
-    margin-right: 7px;
-    .tagName {
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid $color-line;
-      margin-left: 14px;
-      > input {
-        flex: 1;
-        border: none;
-        margin-left: 4px;
-        min-height: 54px;
-        margin-top: 3px;
-      }
-      input::placeholder {
-        font-size: 14px;
-        color: $color-lightFont;
-      }
-    }
-    .tagIcon {
-      display: flex;
-      min-height: 54px;
-      align-items: center;
-      margin-left: 14px;
-      .output {
-        flex: 1;
-        margin-left: 4px;
-        min-height: 54px;
-        margin-top: 3px;
-        height: 54px;
-        line-height: 54px;
-        font-size: 14px;
-        color: $color-lightFont;
-      }
-    }
   }
   .deleteTag {
     margin: 10px 40px;
