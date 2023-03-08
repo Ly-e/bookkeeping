@@ -11,9 +11,9 @@
       :value="tag.name"
       :iconName="tag.icon"
       @update:value="updateTagName"
-      @update:content="updateIcon"
     >
     </tag-data>
+    <icon-list :dataSource="iconList" @update:value="onUpdateIcon" />
     <button class="deleteTag">删 除 标 签</button>
   </div>
 </template>
@@ -31,6 +31,7 @@ import TagData from "@/components/TagData.vue";
 export default class EditDetails extends Vue {
   tag?: TagItem = undefined;
   link: string = "/edit";
+  iconName: string = "";
   iconList: string[] = [
     "shopping",
     "food",
@@ -43,17 +44,23 @@ export default class EditDetails extends Vue {
   icon: string = "";
   updateTagName(name: string) {
     this.name = name;
-    console.log(name);
   }
-  updateIcon(icon: string) {
+  onUpdateIcon(icon: string) {
     this.icon = icon;
-    console.log(icon);
   }
   ok() {
     if (this.tag) {
-      console.log("点击了");
-      console.log(this.icon);
-      tagListModel.update(this.tag.id, this.name, this.icon);
+      if (this.name && this.icon) {
+        const message = tagListModel.update(this.tag.id, this.name, this.icon);
+        if (message === "success") {
+          window.alert("保存成功");
+          this.$router.push("/edit");
+        } else if (message === "duplicated") {
+          window.alert("标签名重复了，请重新输入！");
+        } else if (message === "not found") {
+          window.alert("编辑的标签不存在！");
+        }
+      }
     }
   }
   created() {
@@ -63,6 +70,8 @@ export default class EditDetails extends Vue {
     const tag = tags.filter((t) => t.id === id)[0];
     if (tag) {
       this.tag = tag;
+      this.name = tag.name;
+      this.icon = tag.icon;
     } else {
       this.$router.replace("/404");
     }

@@ -69,7 +69,7 @@ export default class CreateTag extends Vue {
     if (name && icon) {
       const message = tagListModel.create(name, icon);
       if (message === "duplicated") {
-        window.alert("标签名重复，请重新输入！");
+        window.alert("标签名重复了，请重新输入！");
       } else if (message === "success") {
         window.alert("添加成功！");
         this.$router.push("/labeldetails");

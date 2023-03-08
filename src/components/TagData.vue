@@ -15,13 +15,8 @@
         <div class="tagsIcon">
           <Icon :name="iconName" />
         </div>
-        <span class="right"> =></span>
-        <div class="tagsIcon">
-          <Icon :name="icon" />
-        </div>
       </div>
     </div>
-    <icon-list :dataSource="iconList" @update:value="onUpdateIcon" />
   </div>
 </template>
 
@@ -49,8 +44,9 @@ export default class TagData extends Vue {
   onValueChanged(value: string) {
     this.$emit("update:value", value);
   }
-  onUpdateIcon(icon: string) {
-    this.icon = icon;
+  onIconChange(icon: string) {
+    console.log(icon);
+    this.$emit("update:icon", icon);
   }
 }
 </script>
