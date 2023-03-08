@@ -6,7 +6,6 @@
         <Icon name="ok" />
       </button>
     </top-bar>
-    {{ tag }}
     <tag-data
       :value="tag.name"
       :iconName="tag.icon"
@@ -14,7 +13,7 @@
     >
     </tag-data>
     <icon-list :dataSource="iconList" @update:value="onUpdateIcon" />
-    <button class="deleteTag">删 除 标 签</button>
+    <button class="removeTag" @click="removeTag">删 除 标 签</button>
   </div>
 </template>
 
@@ -63,6 +62,15 @@ export default class EditDetails extends Vue {
       }
     }
   }
+  removeTag() {
+    if (this.tag) {
+      const message = tagListModel.remove(this.tag.id);
+      if (message === true) {
+        window.alert("删除成功");
+        this.$router.push("/edit");
+      }
+    }
+  }
   created() {
     const id = this.$route.params.id;
     tagListModel.fetch();
@@ -96,7 +104,7 @@ export default class EditDetails extends Vue {
     background: transparent;
     color: $color-Default;
   }
-  .deleteTag {
+  .removeTag {
     margin: 10px 40px;
     border: none;
     background-color: $color-labelSelected;

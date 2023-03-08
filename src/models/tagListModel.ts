@@ -4,6 +4,7 @@ type TagListModel = {
     fetch: () => TagItem[]
     create: (name: string, icon: string) => 'success' | 'duplicated'
     update: (id: string, name: string, icon: string) => 'success' | 'not found' | 'duplicated'
+    remove: (id: string) => boolean
     save: () => void
 }
 const tagListModel: TagListModel = {
@@ -36,6 +37,18 @@ const tagListModel: TagListModel = {
         } else {
             return 'not found';
         }
+    },
+    remove(id: string) {
+        let index = -1;
+        for (let i = 0; i < this.data.length; i++) {
+            if (this.data[i].id === id) {
+                index = i;
+                break;
+            }
+        }
+        this.data.splice(index, 1);
+        this.save();
+        return true;
     },
     create(name: string, icon: string) {
         const x: TagItem = {
