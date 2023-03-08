@@ -1,3 +1,5 @@
+import createId from "@/lib/createID";
+
 const localStorageKeyName = 'tagList';
 type TagListModel = {
     data: TagItem[]
@@ -51,8 +53,9 @@ const tagListModel: TagListModel = {
         return true;
     },
     create(name: string, icon: string) {
+        const id = createId().toString();
         const x: TagItem = {
-            id: name,
+            id: id,
             name: name,
             icon: icon,
         }

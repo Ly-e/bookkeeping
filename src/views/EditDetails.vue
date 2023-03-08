@@ -53,7 +53,7 @@ export default class EditDetails extends Vue {
         const message = tagListModel.update(this.tag.id, this.name, this.icon);
         if (message === "success") {
           window.alert("保存成功");
-          this.$router.push("/edit");
+          this.$router.back();
         } else if (message === "duplicated") {
           window.alert("标签名重复了，请重新输入！");
         } else if (message === "not found") {
