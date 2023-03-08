@@ -25,10 +25,10 @@ const tagListModel: TagListModel = {
         const idList = this.data.map(item => item.id);
         if (idList.indexOf(id) >= 0) {
             const names = this.data.map(item => item.name);
-            if (names.indexOf(name) >= 0) {
+            const tag = this.data.filter(item => item.id === id)[0];
+            if (names.indexOf(name) >= 0 && tag.name !== name) {
                 return 'duplicated';
             } else {
-                const tag = this.data.filter(item => item.id === id)[0];
                 tag.name = name;
                 tag.icon = icon;
                 this.save();

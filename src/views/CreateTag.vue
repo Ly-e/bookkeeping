@@ -76,7 +76,7 @@ export default class CreateTag extends Vue {
       }
     } else if (!name) {
       window.alert("请输入标签名！");
-    } else if (icon === "" || icon === null) {
+    } else if (icon === "" || icon === null || icon === undefined) {
       window.alert("请选择标签图标！");
     }
   }
