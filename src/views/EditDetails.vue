@@ -7,7 +7,13 @@
       </button>
     </top-bar>
     {{ tag }}
-    <tag-data :value="tag.name" :iconName="tag.icon"> </tag-data>
+    <tag-data
+      :value="tag.name"
+      :iconName="tag.icon"
+      @update:value="updateTagName"
+      @update:content="updateIcon"
+    >
+    </tag-data>
     <button class="deleteTag">删 除 标 签</button>
   </div>
 </template>
@@ -33,14 +39,29 @@ export default class EditDetails extends Vue {
     "medicalSupplies",
     "others",
   ];
-  ok() {}
+  name: string = "";
+  icon: string = "";
+  updateTagName(name: string) {
+    this.name = name;
+    console.log(name);
+  }
+  updateIcon(icon: string) {
+    this.icon = icon;
+    console.log(icon);
+  }
+  ok() {
+    if (this.tag) {
+      console.log("点击了");
+      console.log(this.icon);
+      tagListModel.update(this.tag.id, this.name, this.icon);
+    }
+  }
   created() {
     const id = this.$route.params.id;
     tagListModel.fetch();
     const tags = tagListModel.data;
     const tag = tags.filter((t) => t.id === id)[0];
     if (tag) {
-      console.log(tag);
       this.tag = tag;
     } else {
       this.$router.replace("/404");

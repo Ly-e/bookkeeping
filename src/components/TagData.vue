@@ -13,10 +13,7 @@
       <span>标签图标</span>
       <div class="output">
         <div class="tagsIcon">
-          <Icon
-            :name="iconName"
-            @change="onIconChanged($event.target.iconName)"
-          />
+          <Icon :name="iconName" />
         </div>
         <span class="right"> =></span>
         <div class="tagsIcon">
@@ -51,9 +48,6 @@ export default class TagData extends Vue {
   ];
   onValueChanged(value: string) {
     this.$emit("update:value", value);
-  }
-  onIconChanged(iconName: string) {
-    this.$emit("update:name", iconName);
   }
   onUpdateIcon(icon: string) {
     this.icon = icon;
