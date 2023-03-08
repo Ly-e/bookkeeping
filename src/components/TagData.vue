@@ -13,7 +13,14 @@
       <span>标签图标</span>
       <div class="output">
         <div class="tagsIcon">
-            <slot/>
+          <Icon
+            :name="iconName"
+            @change="onIconChanged($event.target.iconName)"
+          />
+        </div>
+        <span class="right"> =></span>
+        <div class="tagsIcon">
+          <Icon :name="icon" />
         </div>
       </div>
     </div>
@@ -30,9 +37,9 @@ import tagListModel from "@/models/tagListModel";
   components: { IconList },
 })
 export default class TagData extends Vue {
-  tags = tagListModel.fetch();
   @Prop({ default: "" }) readonly value!: string;
   @Prop() readonly tag!: TagItem;
+  @Prop({ default: "" }) readonly iconName!: string;
   icon: string = "";
   iconList: string[] = [
     "shopping",
@@ -42,9 +49,11 @@ export default class TagData extends Vue {
     "medicalSupplies",
     "others",
   ];
-  @Watch("value")
   onValueChanged(value: string) {
     this.$emit("update:value", value);
+  }
+  onIconChanged(iconName: string) {
+    this.$emit("update:name", iconName);
   }
   onUpdateIcon(icon: string) {
     this.icon = icon;
@@ -90,6 +99,7 @@ export default class TagData extends Vue {
     $icon-h: 25px;
     $tags-h: 45px;
     .output {
+      display: flex;
       flex: 1;
       margin-left: 4px;
       min-height: 54px;
@@ -98,6 +108,9 @@ export default class TagData extends Vue {
       line-height: 54px;
       font-size: 14px;
       color: $color-lightFont;
+      .right {
+        margin-left: 6px;
+      }
       .tagsIcon {
         margin-top: 3px;
         margin-left: 5px;
@@ -106,7 +119,6 @@ export default class TagData extends Vue {
         height: $tags-h;
         width: $tags-h;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
         .icon {

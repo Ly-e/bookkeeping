@@ -6,9 +6,8 @@
         <Icon name="ok" />
       </button>
     </top-bar>
-    <tag-data :value="tag.name">
-      <Icon :name="tag.icon" />
-    </tag-data>
+    {{ tag }}
+    <tag-data :value="tag.name" :iconName="tag.icon"> </tag-data>
     <button class="deleteTag">删 除 标 签</button>
   </div>
 </template>
