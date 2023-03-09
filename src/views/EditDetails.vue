@@ -67,7 +67,7 @@ export default class EditDetails extends Vue {
       const message = tagListModel.remove(this.tag.id);
       if (message === true) {
         window.alert("删除成功");
-        this.$router.push("/edit");
+        this.$router.back();
       }
     }
   }

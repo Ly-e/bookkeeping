@@ -2,7 +2,7 @@
   <div class="page">
     <top-bar :link="link">
       新增标签
-      <button class="ok" @click="createTag">
+      <button class="ok" @click="createTag(name, icon)">
         <Icon name="ok" />
       </button>
     </top-bar>
@@ -63,21 +63,13 @@ export default class CreateTag extends Vue {
     this.icon = icon;
   }
 
-  createTag() {
-    const name = this.value;
-    const icon = this.icon;
-    if (name && icon) {
-      const message = tagListModel.create(name, icon);
-      if (message === "duplicated") {
-        window.alert("标签名重复了，请重新输入！");
-      } else if (message === "success") {
-        window.alert("添加成功！");
-        this.$router.push("/labeldetails");
+  createTag(name: string, icon: string) {
+    name = this.value;
+    icon = this.icon;
+    if (name) {
+      if (window.createTag(name, icon) === "success") {
+        this.$router.back();
       }
-    } else if (!name) {
-      window.alert("请输入标签名！");
-    } else if (icon === "" || icon === null || icon === undefined) {
-      window.alert("请选择标签图标！");
     }
   }
 }

@@ -10,3 +10,6 @@ type RecordItem = {
     amount: number;
     createdAt?: Date;
 }
+interface Window {
+    createTag: (name: string, icon: string) => 'success' | 'duplicated' | undefined
+}
