@@ -41,13 +41,11 @@ export default class KeepOne extends Vue {
     this.record.amount = parseFloat(value);
   }
   saveRecord() {
-    const record2: RecordItem = recordListModel.clone(this.record);
-    record2.createdAt = new Date();
-    this.recordsList.push(record2);
+    recordListModel.create(this.record);
   }
   @Watch("recordsList")
   onRecordsListChanged() {
-    recordListModel.save(this.recordsList);
+    recordListModel.save();
   }
 }
 </script>
