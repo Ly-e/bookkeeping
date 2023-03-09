@@ -2,7 +2,7 @@
   <div class="page">
     <top-bar :link="link">
       编辑标签
-      <button class="ok" @click="ok">
+      <button class="ok" @click="ok(id, name, icon)">
         <Icon name="ok" />
       </button>
     </top-bar>
@@ -39,6 +39,7 @@ export default class EditDetails extends Vue {
     "medicalSupplies",
     "others",
   ];
+  id: string = this.$route.params.id;
   name: string = "";
   icon: string = "";
   updateTagName(name: string) {
@@ -47,28 +48,23 @@ export default class EditDetails extends Vue {
   onUpdateIcon(icon: string) {
     this.icon = icon;
   }
-  ok() {
+  ok(id: string, name: string, icon: string) {
     if (this.tag) {
-      if (this.name && this.icon) {
-        const message = tagListModel.update(this.tag.id, this.name, this.icon);
-        if (message === "success") {
-          window.alert("保存成功");
-          this.$router.back();
-        } else if (message === "duplicated") {
-          window.alert("标签名重复了，请重新输入！");
-        } else if (message === "not found") {
-          window.alert("编辑的标签不存在！");
-        }
+      id = this.id;
+      name = this.name;
+      icon = this.icon;
+      if (window.updateTag(id, name, icon) === "success") {
+        this.$router.back();
       }
     }
   }
   remove() {
-    if(this.tag){
-      if(window.removeTag(this.tag.id)){
+    if (this.tag) {
+      if (window.removeTag(this.tag.id)) {
         window.alert("删除成功");
         this.$router.back();
-      }else{
-        window.alert('删除失败')
+      } else {
+        window.alert("删除失败");
       }
     }
   }
