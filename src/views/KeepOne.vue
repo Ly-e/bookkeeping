@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-    {{ recordsList }}
     <top-bar :value.sync="record.type" />
     <tags-bar :data-source="tags" @update:value="onUpdateTags" />
     <add-bar

@@ -12,4 +12,5 @@ type RecordItem = {
 }
 interface Window {
     createTag: (name: string, icon: string) => 'success' | 'duplicated' | undefined
+    removeTag: (id: string) => boolean
 }

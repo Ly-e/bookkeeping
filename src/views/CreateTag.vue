@@ -11,8 +11,8 @@
         <span>标签名称</span>
         <input
           type="text"
-          v-model="value"
-          @update:value="onUpdateTagName"
+          :value="value"
+          @input="onNotesValueChanged"
           placeholder="请输入标签名称"
         />
       </div>
@@ -54,9 +54,6 @@ export default class CreateTag extends Vue {
   @Watch("value")
   onNotesValueChanged(value: string) {
     this.$emit("update:vlaue", value);
-  }
-  onUpdateTagName(name: string) {
-    console.log(name);
   }
   icon: string = "";
   onUpdateIcon(icon: string) {

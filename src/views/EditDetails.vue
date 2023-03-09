@@ -13,7 +13,7 @@
     >
     </tag-data>
     <icon-list :dataSource="iconList" @update:value="onUpdateIcon" />
-    <button class="removeTag" @click="removeTag">删 除 标 签</button>
+    <button class="removeTag" @click="remove">删 除 标 签</button>
   </div>
 </template>
 
@@ -62,12 +62,13 @@ export default class EditDetails extends Vue {
       }
     }
   }
-  removeTag() {
-    if (this.tag) {
-      const message = tagListModel.remove(this.tag.id);
-      if (message === true) {
+  remove() {
+    if(this.tag){
+      if(window.removeTag(this.tag.id)){
         window.alert("删除成功");
         this.$router.back();
+      }else{
+        window.alert('删除失败')
       }
     }
   }

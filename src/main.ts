@@ -30,6 +30,9 @@ window.createTag = (name: string, icon: string) => {
     window.alert("请选择标签图标！");
   }
 }
+window.removeTag = (id: string) => {
+  return tagListModel.remove(id)
+}
 
 new Vue({
   router,
