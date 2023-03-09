@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    {{ recordsList }}
     <top-bar :value.sync="record.type" />
     <tags-bar :data-source="tags" @update:value="onUpdateTags" />
     <add-bar
@@ -31,7 +32,6 @@ export default class KeepOne extends Vue {
   recordsList: RecordItem[] = recordsList;
 
   onUpdateTags(tags: []) {
-    console.log(tags);
     this.record.tags = tags;
   }
   onUpdateNotes(notes: string) {
@@ -46,7 +46,7 @@ export default class KeepOne extends Vue {
     this.recordsList.push(record2);
   }
   @Watch("recordsList")
-  onRecordListChanged() {
+  onRecordsListChanged() {
     recordListModel.save(this.recordsList);
   }
 }

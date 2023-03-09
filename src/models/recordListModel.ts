@@ -6,10 +6,11 @@ const recordLisModel = {
             window.localStorage.getItem(localStorageKeyName) || "[]"
         ) as RecordItem[];
     },
-    save() {
+    save(data: RecordItem[]) {
+        console.log(data)
         window.localStorage.setItem(
             localStorageKeyName,
-            JSON.stringify(this.data)
+            JSON.stringify(data)
         );
     },
     clone(data: RecordItem | RecordItem[]) {
