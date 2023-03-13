@@ -19,7 +19,7 @@ export default class LabelDetails extends Vue {
   link: string = "/details";
   tags = store.tagList;
   goCreateTag() {
-    this.$router.push("/createtag");
+    this.$router.push("/addtags");
   }
 }
 </script>

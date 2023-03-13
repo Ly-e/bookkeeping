@@ -6,7 +6,6 @@ import StatisticsPage from '@/views/StatisticsPage.vue'
 import DetailsPage from '@/views/DetailsPage.vue'
 import NotFound from '@/views/NotFound.vue'
 import EditPage from '@/views/EditPage.vue'
-import AddTags from '@/views/AddTags.vue'
 import LabelDetails from '@/views/LabelDetails.vue'
 import LabelStatistics from '@/views/LabelStatistics.vue'
 import CreateTag from '@/views/CreateTag.vue'
@@ -48,11 +47,6 @@ const routes: Array<RouteConfig> = [
     path: '/edit/:id',
     name: 'EditDetails',
     component: EditDetails
-  },
-  {
-    path: '/addtags',
-    name: 'AddTags',
-    component: AddTags
   },
   {
     path: '/labeldetails',

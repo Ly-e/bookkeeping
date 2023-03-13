@@ -2,19 +2,14 @@
   <div class="page">
     <top-bar :link="link">
       新增标签
-      <button class="ok" @click="createTag(name, icon)">
+      <button class="ok" @click="createTag">
         <Icon name="ok" />
       </button>
     </top-bar>
     <div class="tagData">
       <div class="input-wrapper">
         <span>标签名称</span>
-        <input
-          type="text"
-          :value="value"
-          @input="onNotesValueChanged"
-          placeholder="请输入标签名称"
-        />
+        <input type="text" v-model="value" placeholder="请输入标签名称" />
       </div>
       <div class="output-wrapper">
         <span>标签图标</span>
@@ -33,8 +28,6 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
 import store from "@/store/index2";
-
-
 
 @Component({
   components: { TopBar, IconList },

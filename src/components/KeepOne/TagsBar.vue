@@ -15,7 +15,7 @@
       <li>
         <div class="addTag">
           <button class="tagsIcon addButton">
-            <router-link to="/addtags">
+            <router-link to="/createTag">
               <Icon name="keepone" />
             </router-link>
           </button>
