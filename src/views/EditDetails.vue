@@ -7,8 +7,8 @@
       </button>
     </top-bar>
     <tag-data
-      :value="tag.name"
-      :iconName="tag.icon"
+      :value="currentTag.name"
+      :iconName="currentTag.icon"
       @update:value="updateTagName"
     >
     </tag-data>
@@ -23,12 +23,14 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
 import TagData from "@/components/TagData.vue";
-import store from "@/store/index2";
+
 @Component({
   components: { TopBar, TagData, IconList },
 })
 export default class EditDetails extends Vue {
-  tag?: TagItem = undefined;
+  get currentTag() {
+    return this.$store.state.currentTag;
+  }
   link: string = "/edit";
   iconName: string = "";
   iconList: string[] = [
@@ -49,32 +51,25 @@ export default class EditDetails extends Vue {
     this.icon = icon;
   }
   ok(id: string, name: string, icon: string) {
-    if (this.tag) {
+    if (this.currentTag) {
       id = this.id;
       name = this.name;
       icon = this.icon;
-      if (store.updateTag(id, name, icon) === "success") {
-        this.$router.back();
-      }
+      this.$store.commit("updateTag", { id, name, icon });
     }
   }
   remove() {
-    if (this.tag) {
-      if (store.removeTag(this.tag.id)) {
-        window.alert("删除成功");
-        this.$router.back();
-      } else {
-        window.alert("删除失败");
-      }
+    if (this.currentTag) {
+      this.$store.commit("removeTag", this.currentTag.id);
     }
   }
   created() {
+    this.$store.commit("fetchTags");
     const id = this.$route.params.id;
-    const tag = store.findTag(id);
-    this.tag = tag;
-    this.name = tag.name;
-    this.icon = tag.icon;
-    if (!tag) {
+    this.$store.commit("setCurrentTag", id);
+    this.name = this.currentTag.name;
+    this.icon = this.currentTag.icon;
+    if (!this.currentTag) {
       this.$router.replace("/404");
     }
   }

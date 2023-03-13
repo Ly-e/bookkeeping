@@ -4,11 +4,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 @Component
-export default class TagsList extends Vue {
-  @Prop(Array) readonly dataSource: [] | undefined;
-}
+export default class TagsList extends Vue {}
 </script>
 
 <style lang="scss" scoped>

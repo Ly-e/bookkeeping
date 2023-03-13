@@ -27,13 +27,14 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
-import store from "@/store/index2";
 
 @Component({
   components: { TopBar, IconList },
 })
 export default class CreateTag extends Vue {
-  tags = store.tagList;
+  get tags() {
+    return this.$store.state.tagList;
+  }
   link: string = "/labeldetails";
   output: string = "请选择标签图标";
   iconList: string[] = [
@@ -58,9 +59,7 @@ export default class CreateTag extends Vue {
     name = this.value;
     icon = this.icon;
     if (name) {
-      if (store.createTag(name, icon) === "success") {
-        this.$router.back();
-      }
+      this.$store.commit("createTag", { name: name, icon: icon });
     }
   }
 }

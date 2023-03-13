@@ -3,7 +3,7 @@
     <router-link
       :to="`/edit/${item.id}`"
       class="tags-wrapper"
-      v-for="(item, index) in dataSource"
+      v-for="(item, index) in tagList"
       :key="index"
     >
       <div class="icon-wrapper">
@@ -19,7 +19,12 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class TagsList extends Vue {
-  @Prop(Array) readonly dataSource: [] | undefined;
+  get tagList() {
+    return this.$store.state.tagList;
+  }
+  Created() {
+    this.$store.commit("fetchTags");
+  }
 }
 </script>
 

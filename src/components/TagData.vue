@@ -45,7 +45,6 @@ export default class TagData extends Vue {
     this.$emit("update:value", value);
   }
   onIconChange(icon: string) {
-    console.log(icon);
     this.$emit("update:icon", icon);
   }
 }

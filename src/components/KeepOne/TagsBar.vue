@@ -2,7 +2,7 @@
   <div class="tagsBar">
     <ul class="tags">
       <li
-        v-for="(item, index) in dataSource"
+        v-for="(item, index) in tagList"
         :key="index"
         :class="{ selected: selectedTags.indexOf(item) >= 0 }"
         @click="toggle(item)"
@@ -33,8 +33,13 @@ import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class TagsBar extends Vue {
-  @Prop(Array) readonly dataSource: [] | undefined;
+  get tagList() {
+    return this.$store.state.tagList;
+  }
   selectedTags: Array<any> = [];
+  created() {
+    this.$store.commit("fetchTags");
+  }
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
     if (index >= 0) {

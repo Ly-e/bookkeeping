@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <top-bar :link="link"> 查看标签 </top-bar>
-    <tags-list :data-source="tags" />
+    <tags-list />
     <button class="createTag" @click="goCreateTag">新 增 标 签</button>
   </div>
 </template>
@@ -11,15 +11,17 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import TagsList from "@/components/LabelDetails/TagsList.vue";
-import store from "@/store/index2";
+
 @Component({
   components: { TopBar, TagsList },
 })
 export default class LabelDetails extends Vue {
   link: string = "/details";
-  tags = store.tagList;
   goCreateTag() {
-    this.$router.push("/addtags");
+    this.$router.push("/createTag");
+  }
+  created() {
+    this.$store.commit("fetchTags");
   }
 }
 </script>

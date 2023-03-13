@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <top-bar :value.sync="record.type" />
-    <tags-bar :data-source="tags" @update:value="onUpdateTags" />
+    <tags-bar @update:value="onUpdateTags" />
     <add-bar
       @update:notes="onUpdateNotes"
       @update:value="onUpdateAmount"
@@ -16,16 +16,21 @@ import TopBar from "@/components/KeepOne/TopBar.vue";
 import TagsBar from "@/components/KeepOne/TagsBar.vue";
 import AddBar from "@/components/KeepOne/AddBar.vue";
 import { Component } from "vue-property-decorator";
-import store from "@/store/index2";
 
 @Component({
   components: { TopBar, TagsBar, AddBar },
 })
 export default class KeepOne extends Vue {
-  tags = store.tagList;
+  get tagList() {
+    return this.$store.state.tagList;
+  }
+  get recordList() {
+    return this.$store.state.recordList;
+  }
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
-  recordList = store.recordList;
-
+  created() {
+    this.$store.commit("fetchRecords");
+  }
   onUpdateTags(tags: []) {
     this.record.tags = tags;
   }
@@ -36,7 +41,7 @@ export default class KeepOne extends Vue {
     this.record.amount = parseFloat(value);
   }
   saveRecord() {
-    store.createRecord(this.record);
+    this.$store.commit("createRecord", this.record);
   }
 }
 </script>
