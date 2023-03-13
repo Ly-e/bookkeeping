@@ -2,10 +2,8 @@
   <div class="topBar">
     <ul>
       <li>
-        <button>
-          <router-link to="/index">
-            <Icon name="back" />
-          </router-link>
+        <button @click="back">
+          <Icon name="back" />
         </button>
       </li>
       <li
@@ -38,6 +36,9 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class Types extends Vue {
   @Prop() readonly value!: string;
+  back() {
+    this.$router.back();
+  }
   selectType(type: string) {
     // type 只能是 '-'、'+'中的一个
     if (type !== "-" && type !== "+") {
