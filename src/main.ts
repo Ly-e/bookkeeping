@@ -7,6 +7,7 @@ import NavBar from '@/components/NavBar.vue'
 import PageLayout from '@/components/PageLayout.vue'
 import IconComponent from '@/components/IconComponent.vue'
 import tagListModel from './models/tagListModel'
+import recordListModel from './models/recordListModel'
 
 Vue.config.productionTip = false
 
@@ -14,6 +15,11 @@ Vue.component('NavBar', NavBar)
 Vue.component('PageLayout', PageLayout)
 Vue.component('Icon', IconComponent)
 
+//record store
+window.recordList = recordListModel.fetch();
+window.createRecord = (record: RecordItem) =>
+  recordListModel.create(record);
+//tag store
 window.createTag = (name: string, icon: string) => {
   if (name && icon) {
     const message = tagListModel.create(name, icon);

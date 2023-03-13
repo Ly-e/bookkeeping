@@ -11,8 +11,12 @@ type RecordItem = {
     createdAt?: Date;
 }
 interface Window {
+    // tag
     createTag: (name: string, icon: string) => 'success' | 'duplicated' | undefined
     removeTag: (id: string) => boolean
     updateTag: (id: string, name: string, icon: string) => 'success' | 'duplicated' | 'not found' | undefined
     findTag: (id: string, tag: TagItem[]) => TagItem
+    //record
+    recordList: RecordItem[]
+    createRecord: (record: RecordItem) => void
 }

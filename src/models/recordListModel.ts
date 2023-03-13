@@ -10,7 +10,6 @@ const recordLisModel = {
         return this.data
     },
     save() {
-        console.log(this.data)
         window.localStorage.setItem(
             localStorageKeyName,
             JSON.stringify(this.data)
@@ -20,6 +19,7 @@ const recordLisModel = {
         const record2: RecordItem = clone(record);
         record2.createdAt = new Date();
         this.data.push(record2);
+        this.save();
     },
 };
 export default recordLisModel;

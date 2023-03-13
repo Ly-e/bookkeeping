@@ -15,11 +15,9 @@ import Vue from "vue";
 import TopBar from "@/components/KeepOne/TopBar.vue";
 import TagsBar from "@/components/KeepOne/TagsBar.vue";
 import AddBar from "@/components/KeepOne/AddBar.vue";
-import { Component, Prop, Watch } from "vue-property-decorator";
-import recordListModel from "@/models/recordListModel";
+import { Component } from "vue-property-decorator";
 import tagListModel from "@/models/tagListModel";
 
-const recordsList = recordListModel.fetch();
 tagListModel.fetch();
 
 @Component({
@@ -28,7 +26,7 @@ tagListModel.fetch();
 export default class KeepOne extends Vue {
   tags = tagListModel.data;
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
-  recordsList: RecordItem[] = recordsList;
+  recordList = window.recordList;
 
   onUpdateTags(tags: []) {
     this.record.tags = tags;
@@ -40,11 +38,7 @@ export default class KeepOne extends Vue {
     this.record.amount = parseFloat(value);
   }
   saveRecord() {
-    recordListModel.create(this.record);
-  }
-  @Watch("recordsList")
-  onRecordsListChanged() {
-    recordListModel.save();
+    window.createRecord(this.record);
   }
 }
 </script>
