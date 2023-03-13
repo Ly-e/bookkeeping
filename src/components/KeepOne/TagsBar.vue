@@ -39,6 +39,9 @@ export default class TagsBar extends Vue {
     const index = this.selectedTags.indexOf(tag);
     if (index >= 0) {
       this.selectedTags.splice(index, 1);
+    } else if (this.selectedTags[0]) {
+      this.selectedTags.splice(0, 1);
+      this.selectedTags.push(tag);
     } else {
       this.selectedTags.push(tag);
     }
