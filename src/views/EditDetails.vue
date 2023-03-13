@@ -23,6 +23,7 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
 import TagData from "@/components/TagData.vue";
+import store from "@/store/index2";
 @Component({
   components: { TopBar, TagData, IconList },
 })
@@ -52,14 +53,14 @@ export default class EditDetails extends Vue {
       id = this.id;
       name = this.name;
       icon = this.icon;
-      if (window.updateTag(id, name, icon) === "success") {
+      if (store.updateTag(id, name, icon) === "success") {
         this.$router.back();
       }
     }
   }
   remove() {
     if (this.tag) {
-      if (window.removeTag(this.tag.id)) {
+      if (store.removeTag(this.tag.id)) {
         window.alert("删除成功");
         this.$router.back();
       } else {
@@ -69,9 +70,8 @@ export default class EditDetails extends Vue {
   }
   created() {
     const id = this.$route.params.id;
-    const tags = window.tagList;
-    const tag = window.findTag(id, tags);
-    this.tag = window.findTag(id, tags);
+    const tag = store.findTag(id);
+    this.tag = tag;
     this.name = tag.name;
     this.icon = tag.icon;
     if (!tag) {
