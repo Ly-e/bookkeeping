@@ -48,6 +48,9 @@ window.updateTag = (id: string, name: string, icon: string) => {
     }
   }
 }
+window.findTag = (id: string, tag: TagItem[]) => {
+  return tag.filter((t) => t.id === id)[0];
+}
 
 new Vue({
   router,

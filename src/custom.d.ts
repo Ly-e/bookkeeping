@@ -14,5 +14,5 @@ interface Window {
     createTag: (name: string, icon: string) => 'success' | 'duplicated' | undefined
     removeTag: (id: string) => boolean
     updateTag: (id: string, name: string, icon: string) => 'success' | 'duplicated' | 'not found' | undefined
-    findTag: (id: string) => TagItem
+    findTag: (id: string, tag: TagItem[]) => TagItem
 }

@@ -72,12 +72,11 @@ export default class EditDetails extends Vue {
     const id = this.$route.params.id;
     tagListModel.fetch();
     const tags = tagListModel.data;
-    const tag = tags.filter((t) => t.id === id)[0];
-    if (tag) {
-      this.tag = tag;
-      this.name = tag.name;
-      this.icon = tag.icon;
-    } else {
+    const tag = window.findTag(id, tags);
+    this.tag = window.findTag(id, tags);
+    this.name = tag.name;
+    this.icon = tag.icon;
+    if (!tag) {
       this.$router.replace("/404");
     }
   }
