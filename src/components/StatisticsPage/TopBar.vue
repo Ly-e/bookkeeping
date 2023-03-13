@@ -8,22 +8,24 @@
       </li>
       <li
         class="types"
-        :class="value === '-' && 'selected'"
-        @click="selectType('-')"
+        :class="value === 'week' && 'selected'"
+        @click="selectType('week')"
       >
-        <div>支出</div>
+        <div>周统计</div>
       </li>
       <li
         class="types"
-        :class="value === '+' && 'selected'"
-        @click="selectType('+')"
+        :class="value === 'month' && 'selected'"
+        @click="selectType('month')"
       >
-        <div>收入</div>
+        <div>月统计</div>
       </li>
-      <li>
-        <button class="edit">
-          <router-link to="/edit"> 编辑 </router-link>
-        </button>
+      <li
+        class="types"
+        :class="value === 'year' && 'selected'"
+        @click="selectType('year')"
+      >
+        <div>年统计</div>
       </li>
     </ul>
   </div>
@@ -34,17 +36,17 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 
 @Component
-export default class Types extends Vue {
+export default class TopBar extends Vue {
   @Prop() readonly value!: string;
-  back() {
-    this.$router.back();
-  }
   selectType(type: string) {
-    // type 只能是 '-'、'+'中的一个
-    if (type !== "-" && type !== "+") {
+    // type 只能是 'week'、'month'、'year'中的一个
+    if (type !== "year" && type !== "month" && type !== "week") {
       throw new Error("type is unknown");
     }
     this.$emit("update:value", type);
+  }
+  back() {
+    this.$router.back();
   }
 }
 </script>
@@ -71,7 +73,9 @@ export default class Types extends Vue {
       height: 36px;
     }
     .selected {
-      border-bottom: 2px solid $color-labelSelected;
+      color: white;
+      background-color: $color-topBarSelected;
+      border-radius: 5px 10px 5px 10px;
     }
   }
   button {
@@ -82,10 +86,6 @@ export default class Types extends Vue {
       height: 20px;
       margin-top: 2px;
     }
-  }
-  .edit {
-    font-size: 8px;
-    color: $color-lightFont;
   }
 }
 </style>
