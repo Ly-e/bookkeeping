@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Prop, Watch } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import CategoryList from "@/components/DetailsPage/CategoryList.vue";
 

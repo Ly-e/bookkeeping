@@ -6,8 +6,7 @@ import store from './store'
 import NavBar from '@/components/NavBar.vue'
 import PageLayout from '@/components/PageLayout.vue'
 import IconComponent from '@/components/IconComponent.vue'
-import tagListModel from './models/tagListModel'
-import recordListModel from './models/recordListModel'
+
 
 Vue.config.productionTip = false
 
