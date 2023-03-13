@@ -22,7 +22,6 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
-import tagListModel from "@/models/tagListModel";
 import TagData from "@/components/TagData.vue";
 @Component({
   components: { TopBar, TagData, IconList },
@@ -70,8 +69,7 @@ export default class EditDetails extends Vue {
   }
   created() {
     const id = this.$route.params.id;
-    tagListModel.fetch();
-    const tags = tagListModel.data;
+    const tags = window.tagList;
     const tag = window.findTag(id, tags);
     this.tag = window.findTag(id, tags);
     this.name = tag.name;

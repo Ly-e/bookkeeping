@@ -16,15 +16,12 @@ import TopBar from "@/components/KeepOne/TopBar.vue";
 import TagsBar from "@/components/KeepOne/TagsBar.vue";
 import AddBar from "@/components/KeepOne/AddBar.vue";
 import { Component } from "vue-property-decorator";
-import tagListModel from "@/models/tagListModel";
-
-tagListModel.fetch();
 
 @Component({
   components: { TopBar, TagsBar, AddBar },
 })
 export default class KeepOne extends Vue {
-  tags = tagListModel.data;
+  tags = window.tagList;
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
   recordList = window.recordList;
 

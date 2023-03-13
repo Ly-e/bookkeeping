@@ -11,13 +11,12 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import TagsList from "@/components/LabelDetails/TagsList.vue";
-import tagListModel from "@/models/tagListModel";
 @Component({
   components: { TopBar, TagsList },
 })
 export default class LabelDetails extends Vue {
   link: string = "/details";
-  tags = tagListModel.fetch();
+  tags = window.tagList;
   goCreateTag() {
     this.$router.push("/createtag");
   }

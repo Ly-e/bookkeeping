@@ -20,6 +20,7 @@ window.recordList = recordListModel.fetch();
 window.createRecord = (record: RecordItem) =>
   recordListModel.create(record);
 //tag store
+window.tagList = tagListModel.fetch();
 window.createTag = (name: string, icon: string) => {
   if (name && icon) {
     const message = tagListModel.create(name, icon);

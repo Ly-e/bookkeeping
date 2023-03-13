@@ -24,7 +24,7 @@
 import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import IconList from "@/components/IconList.vue";
-import tagListModel from "@/models/tagListModel";
+
 @Component({
   components: { IconList },
 })

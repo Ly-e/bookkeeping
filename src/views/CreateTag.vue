@@ -32,14 +32,14 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
-import tagListModel from "@/models/tagListModel";
 
-tagListModel.fetch();
+
+
 @Component({
   components: { TopBar, IconList },
 })
 export default class CreateTag extends Vue {
-  tags = tagListModel.data;
+  tags = window.tagList;
   link: string = "/labeldetails";
   output: string = "请选择标签图标";
   iconList: string[] = [

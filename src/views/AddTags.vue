@@ -2,7 +2,7 @@
   <div class="page">
     <top-bar :link="link">
       新增标签
-      <button class="ok" @click="createTag">
+      <button class="ok" @click="createTag(name, icon)">
         <Icon name="ok" />
       </button>
     </top-bar>
@@ -32,14 +32,12 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
-import tagListModel from "@/models/tagListModel";
 
-tagListModel.fetch();
 @Component({
   components: { TopBar, IconList },
 })
 export default class CreateTag extends Vue {
-  tags = tagListModel.data;
+  tags = window.tagList;
   link: string = "/keepone";
   output: string = "请选择标签图标";
   iconList: string[] = [
@@ -63,21 +61,13 @@ export default class CreateTag extends Vue {
     this.icon = icon;
   }
 
-  createTag() {
-    const name = this.value;
-    const icon = this.icon;
-    if (name && icon) {
-      const message = tagListModel.create(name, icon);
-      if (message === "duplicated") {
-        window.alert("标签名重复，请重新输入！");
-      } else if (message === "success") {
-        window.alert("添加成功！");
-        this.$router.push("/keepone");
+  createTag(name: string, icon: string) {
+    name = this.value;
+    icon = this.icon;
+     if (name) {
+      if (window.createTag(name, icon) === "success") {
+        this.$router.back();
       }
-    } else if (!name) {
-      window.alert("请输入标签名！");
-    } else if (icon === "") {
-      window.alert("请选择标签图标！");
     }
   }
 }
