@@ -1,7 +1,7 @@
 <template>
   <div class="tabs-wrapper">
+    <slot />
     <ul class="tabs">
-      <li><slot /></li>
       <li
         class="types"
         :class="liClass(item)"
@@ -68,6 +68,7 @@ export default class TabsComponent extends Vue {
   button {
     background: transparent;
     border: none;
+    margin-left: 10px;
     .icon {
       width: 20px;
       height: 20px;

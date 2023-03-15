@@ -16,8 +16,9 @@
       :dataSource="intervalArray"
     >
     </tabs-component>
-    <time-range />
     <overview-bar />
+    <Proportions />
+    <ResultList />
   </div>
 </template>
 
@@ -28,9 +29,10 @@ import OverviewBar from "@/components/StatisticsPage/OverviewBar.vue";
 import TabsComponent from "@/components/TabsComponent.vue";
 import weekIntervalList from "@/constans/weekIntervalList";
 import statisticsTypeList from "@/constans/statisticsTypeList";
-
+import Proportions from "@/components/StatisticsPage/Proportions.vue";
+import ResultList from "@/components/StatisticsPage/ResultList.vue";
 @Component({
-  components: { OverviewBar, TabsComponent },
+  components: { OverviewBar, TabsComponent, Proportions, ResultList },
 })
 export default class extends Vue {
   type = "week";

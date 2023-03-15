@@ -55,12 +55,10 @@ export default class CreateTag extends Vue {
     this.icon = icon;
   }
 
-  createTag(name: string, icon: string) {
-    name = this.value;
-    icon = this.icon;
-    if (name) {
-      this.$store.commit("createTag", { name: name, icon: icon });
-    }
+  createTag() {
+    const name = this.value;
+    const icon = this.icon;
+    this.$store.commit("createTag", { name: name, icon: icon });
   }
 }
 </script>

@@ -8,7 +8,12 @@ type RecordItem = {
     notes: string;
     type: string;
     amount: number;
-    createdAt?: Date;
+    createdAt?: string;
+}
+type RootState = {
+    recordList: RecordItem[],
+    tagList: TagItem[],
+    currentTag?: TagItem
 }
 type TagListModel = {
     data: TagItem[]

@@ -6,11 +6,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-type RootState = {
-  recordList: RecordItem[],
-  tagList: TagItem[],
-  currentTag?: TagItem
-}
+
 const store = new Vuex.Store({
   state: {
     recordList: [],
@@ -25,7 +21,7 @@ const store = new Vuex.Store({
     },
     createRecord(state, record: RecordItem) {
       const record2: RecordItem = clone(record);
-      record2.createdAt = new Date();
+      record2.createdAt = new Date().toISOString();
       state.recordList.push(record2);
       store.commit('saveRecords');
     },
@@ -57,11 +53,12 @@ const store = new Vuex.Store({
         const nameInDataSet = [...new Set(nameInData)];
         if (nameInDataSet.indexOf(x.name) >= 0) {
           window.alert("标签名重复了，请重新输入！");
+        } else {
+          state.tagList.push(x);
+          store.commit('saveTags');
+          window.alert("添加成功！");
+          router.back();
         }
-        state.tagList.push(x);
-        store.commit('saveTags');
-        window.alert("添加成功！");
-        router.back();
       } else if (!name) {
         window.alert("请输入标签名！");
       } else if (icon === "" || icon === null || icon === undefined) {
