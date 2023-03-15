@@ -1,7 +1,7 @@
 <template>
   <ul class="resultList">
     <li v-for="(group, index) in result" :key="index">
-      <span class="title">{{ group.title }}</span>
+      <span class="title"> {{ beautify(group.title) }}</span>
       <ul class="group-wrapper">
         <li v-for="item in group.items" :key="item.id">
           <div class="tags">
@@ -23,6 +23,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import dayjs from "dayjs";
 @Component
 export default class ResultList extends Vue {
   tagIcon(tags: TagItem[]) {
@@ -30,6 +31,21 @@ export default class ResultList extends Vue {
   }
   tagName(tags: TagItem[]) {
     return tags[0].name;
+  }
+  beautify(title: string) {
+    const day = dayjs(title);
+    const now = dayjs();
+    if (day.isSame(now, "day")) {
+      return "今天";
+    } else if (day.isSame(now.subtract(1, "day"), "day")) {
+      return "昨天";
+    } else if (day.isSame(now.subtract(2, "day"), "day")) {
+      return "前天";
+    } else if (day.isSame(now, "year")) {
+      return day.format("MM月D日");
+    } else {
+      return day.format("YYYY年MM月D日");
+    }
   }
   get recordList() {
     return (this.$store.state as RootState).recordList;
