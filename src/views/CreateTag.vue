@@ -27,7 +27,7 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
-
+import iconList from "@/constans/iconList";
 @Component({
   components: { TopBar, IconList },
 })
@@ -37,14 +37,7 @@ export default class CreateTag extends Vue {
   }
   link: string = "/labeldetails";
   output: string = "请选择标签图标";
-  iconList: string[] = [
-    "shopping",
-    "food",
-    "transportation",
-    "entertainment",
-    "medicalSupplies",
-    "others",
-  ];
+  iconList = iconList;
   value: string = "";
   @Watch("value")
   onNotesValueChanged(value: string) {

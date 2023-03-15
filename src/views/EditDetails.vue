@@ -23,7 +23,7 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 import TopBar from "@/components/TopBar.vue";
 import IconList from "@/components/IconList.vue";
 import TagData from "@/components/TagData.vue";
-
+import iconList from "@/constans/iconList";
 @Component({
   components: { TopBar, TagData, IconList },
 })
@@ -33,14 +33,7 @@ export default class EditDetails extends Vue {
   }
   link: string = "/edit";
   iconName: string = "";
-  iconList: string[] = [
-    "shopping",
-    "food",
-    "transportation",
-    "entertainment",
-    "medicalSupplies",
-    "others",
-  ];
+  iconList = iconList;
   id: string = this.$route.params.id;
   name: string = "";
   icon: string = "";

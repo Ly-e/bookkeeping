@@ -12,26 +12,26 @@
       <div class="output">{{ output }}</div>
     </label>
     <div class="numberPad">
-      <button @click="inputContent">1</button>
-      <button @click="inputContent">2</button>
-      <button @click="inputContent">3</button>
-      <button class="big" @click="backspace">
-        <Icon name="backspace" />
-      </button>
-      <button @click="inputContent">4</button>
-      <button @click="inputContent">5</button>
-      <button @click="inputContent">6</button>
-      <button @click="calculate">+</button>
-      <button @click="calculate">-</button>
-      <button @click="inputContent">7</button>
-      <button @click="inputContent">8</button>
-      <button @click="inputContent">9</button>
-      <button @click="calculate">x</button>
-      <button @click="calculate">÷</button>
-      <button @click="clear">清空</button>
-      <button @click="inputContent">0</button>
-      <button @click="inputContent">.</button>
-      <button class="big ok" @click="ok">确定</button>
+      <div class="number">
+        <button @click="inputContent">1</button>
+        <button @click="inputContent">2</button>
+        <button @click="inputContent">3</button>
+        <button @click="inputContent">4</button>
+        <button @click="inputContent">5</button>
+        <button @click="inputContent">6</button>
+        <button @click="inputContent">7</button>
+        <button @click="inputContent">8</button>
+        <button @click="inputContent">9</button>
+        <button @click="clear">清空</button>
+        <button @click="inputContent">0</button>
+        <button @click="inputContent">.</button>
+      </div>
+      <div class="opretion">
+        <button @click="backspace">
+          <Icon name="backspace" />
+        </button>
+        <button class="ok" @click="ok">确定</button>
+      </div>
     </div>
   </div>
 </template>
@@ -129,21 +129,31 @@ export default class AddBar extends Vue {
   .numberPad {
     display: flex;
     flex-wrap: wrap;
-    button {
-      width: 20%;
-      height: 60px;
-      background-color: white;
-      border: 1px solid $color-background;
+    .number {
+      width: 75%;
+      button {
+        width: 33.3333%;
+        height: 60px;
+        background-color: white;
+        border: 1px solid $color-background;
+      }
+    }
+    .opretion {
+      width: 25%;
+      button {
+        width: 100%;
+        height: 60px;
+        background-color: white;
+        border: 1px solid $color-background;
+      }
+      .ok {
+        background-color: $color-OK;
+        height: 180px;
+      }
     }
     .icon {
       width: 20px;
       height: 20px;
-    }
-    .big {
-      width: 40%;
-    }
-    .ok {
-      background-color: $color-OK;
     }
   }
 }
