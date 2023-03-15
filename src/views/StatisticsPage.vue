@@ -17,8 +17,7 @@
     >
     </tabs-component>
     <overview-bar />
-    <Proportions />
-    <ResultList />
+    <statistics-content />
   </div>
 </template>
 
@@ -29,10 +28,9 @@ import OverviewBar from "@/components/StatisticsPage/OverviewBar.vue";
 import TabsComponent from "@/components/TabsComponent.vue";
 import weekIntervalList from "@/constans/weekIntervalList";
 import statisticsTypeList from "@/constans/statisticsTypeList";
-import Proportions from "@/components/StatisticsPage/Proportions.vue";
-import ResultList from "@/components/StatisticsPage/ResultList.vue";
+import StatisticsContent from "@/components/StatisticsPage/StatisticsContent.vue";
 @Component({
-  components: { OverviewBar, TabsComponent, Proportions, ResultList },
+  components: { OverviewBar, TabsComponent, StatisticsContent },
 })
 export default class extends Vue {
   type = "week";
