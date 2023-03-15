@@ -1,18 +1,45 @@
 <template>
   <div class="page">
-    <top-bar :value.sync="type" />
+    <tabs-component
+      class-prefix="type"
+      :value.sync="type"
+      :dataSource="topContent"
+    >
+      <button class="backButton" @click="back">
+        <Icon name="back" />
+      </button>
+    </tabs-component>
+
+    <tabs-component
+      classPrefix="interval"
+      :value.sync="interval"
+      :dataSource="intervalArray"
+    >
+    </tabs-component>
+    <time-range />
+    <overview-bar />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import TopBar from "@/components/StatisticsPage/TopBar.vue";
 import { Component } from "vue-property-decorator";
+import OverviewBar from "@/components/StatisticsPage/OverviewBar.vue";
+import TabsComponent from "@/components/TabsComponent.vue";
+import weekIntervalList from "@/constans/weekIntervalList";
+import statisticsTypeList from "@/constans/statisticsTypeList";
+
 @Component({
-  components: { TopBar },
+  components: { OverviewBar, TabsComponent },
 })
 export default class extends Vue {
   type = "week";
+  topContent = statisticsTypeList;
+  interval = "thisWeek";
+  intervalArray = weekIntervalList;
+  back() {
+    this.$router.back();
+  }
 }
 </script>
 
@@ -23,5 +50,18 @@ export default class extends Vue {
   display: flex;
   flex-direction: column;
   background-color: $color-background;
+  ::v-deep .type-tabs-item {
+    &.selected {
+      color: white;
+      background-color: $color-labelSelected;
+      border-radius: 5px 10px 5px 10px;
+    }
+  }
+  ::v-deep .interval-tabs-item {
+    &.selected {
+      color: $color-highlightRed;
+      border-bottom: 2px solid $color-labelSelected;
+    }
+  }
 }
 </style>

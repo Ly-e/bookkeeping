@@ -74,7 +74,7 @@ export default class TopBar extends Vue {
     }
     .selected {
       color: white;
-      background-color: $color-topBarSelected;
+      background-color: $color-labelSelected;
       border-radius: 5px 10px 5px 10px;
     }
   }
