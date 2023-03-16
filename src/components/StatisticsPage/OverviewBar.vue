@@ -1,25 +1,30 @@
 <template>
   <div class="overview">
     <div class="type">
-      <span>周支出</span>
-      <div>0.00</div>
+      <span>今日支出</span>
+      <div>￥{{ expenditure }}</div>
     </div>
     <div class="type">
-      <span>周收入</span>
-      <div>0.00</div>
+      <span>今日收入</span>
+      <div>￥{{ income }}</div>
     </div>
     <div class="type">
-      <span>周结余</span>
-      <div>0.00</div>
+      <span>日结余</span>
+      <div>￥{{ balance }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 @Component
-export default class OverviewBar extends Vue {}
+export default class OverviewBar extends Vue {
+  @Prop() dataSource!: { income: number; expenditure: number };
+  income = this.dataSource.income;
+  expenditure = this.dataSource.expenditure;
+  balance = this.income - this.expenditure;
+}
 </script>
 
 <style lang="scss" scoped>
