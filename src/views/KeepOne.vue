@@ -28,7 +28,7 @@ export default class KeepOne extends Vue {
     return this.$store.state.recordList;
   }
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
-  created() {
+  beforeCreate() {
     this.$store.commit("fetchRecords");
   }
   onUpdateTags(tags: []) {

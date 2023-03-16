@@ -26,12 +26,17 @@ export default class Index extends Vue {
   }
   getResult(recordType: string) {
     const { recordList } = this;
+    let total;
     const today = new Date();
-    const new2List = clone(recordList)
-      .filter((r) => r.type === recordType)
-      .filter((r) => dayjs(r.createdAt).isSame(dayjs(today), "day"));
-    const amountList = new2List.map((r) => r.amount);
-    const total = amountList.reduce((sum, item) => sum + item);
+    if (recordList) {
+      const new2List = clone(recordList)
+        .filter((r) => r.type === recordType)
+        .filter((r) => dayjs(r.createdAt).isSame(dayjs(today), "day"));
+      const amountList = new2List.map((r) => r.amount);
+      total = amountList.reduce((sum, item) => sum + item, 0);
+    } else {
+      total = 0;
+    }
     return total;
   }
   beforeCreate() {
