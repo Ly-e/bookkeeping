@@ -27,7 +27,7 @@ export default class extends Vue {
 <style lang="scss" scoped>
 @import "~@/assets/style/helper.scss";
 .page {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: $color-background;

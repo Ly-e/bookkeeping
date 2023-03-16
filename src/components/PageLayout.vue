@@ -1,28 +1,26 @@
 <template>
-    <div class="layout-wrapper">
-        <div class="content">
-            <slot/>
-        </div>
-      <nav>
-        <NavBar/>
-      </nav>
+  <div class="layout-wrapper">
+    <div class="content">
+      <slot />
     </div>
+    <nav>
+      <NavBar />
+    </nav>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
 
 <style lang="scss" scoped>
-.layout-wrapper{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+.layout-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-.content{
-    overflow: auto;
-    flex-grow: 1;
+.content {
+  overflow: auto;
+  flex-grow: 1;
 }
 </style>

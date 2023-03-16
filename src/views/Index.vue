@@ -1,20 +1,22 @@
 <template>
-  <PageLayout>
+  <PageLayout class="page">
+    <div class="title">
+      <h2 class="text">简粉记账</h2>
+      <span class="notes">记录点滴日常</span>
+    </div>
     <OverviewBar :dataSource="dataSource" />
-    <Proportions />
   </PageLayout>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import Proportions from "@/components/StatisticsPage/Proportions.vue";
 import OverviewBar from "@/components/StatisticsPage/OverviewBar.vue";
 import dayjs from "dayjs";
 import clone from "@/lib/clone";
 import recordTypeList from "@/constans/recordTypeList";
 @Component({
-  components: { Proportions, OverviewBar },
+  components: { OverviewBar },
 })
 export default class Index extends Vue {
   dataSource = { income: 0, expenditure: 0 };
@@ -43,4 +45,20 @@ export default class Index extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/assets/style/helper.scss";
+.page {
+  background-color: $color-background;
+  .title {
+    margin-left: 10px;
+    color: $color-title;
+    display: flex;
+    flex-direction: column;
+    .text {
+      font-size: 28px;
+    }
+    .notes {
+      font-size: 14px;
+    }
+  }
+}
 </style>

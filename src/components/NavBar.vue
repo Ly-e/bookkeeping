@@ -28,6 +28,7 @@ export default {
 nav {
   display: flex;
   flex-direction: row;
+  background-color: white;
   box-shadow: 0 0 5px rgba($color-labelBackground, 0.3);
   > .item {
     width: 33.333333%;
