@@ -13,7 +13,8 @@ type RecordItem = {
 type RootState = {
     recordList: RecordItem[],
     tagList: TagItem[],
-    currentTag?: TagItem
+    message?: string,
+    currentTag?: TagItem,
 }
 type TagListModel = {
     data: TagItem[]

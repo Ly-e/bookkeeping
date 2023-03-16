@@ -52,6 +52,15 @@ export default class CreateTag extends Vue {
     const name = this.value;
     const icon = this.icon;
     this.$store.commit("createTag", { name: name, icon: icon });
+    if (this.$store.state.message === "success") {
+      window.alert("创建成功！");
+    } else if (this.$store.state.message === "duplicated") {
+      window.alert("标签名重复了，请重新输入！");
+    } else if (this.$store.state.message === "no name") {
+      window.alert("请输入标签名！");
+    } else if (this.$store.state.message === "no icon") {
+      window.alert("请选择标签图标！");
+    }
   }
 }
 </script>

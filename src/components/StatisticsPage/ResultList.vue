@@ -70,14 +70,14 @@ export default class ResultList extends Vue {
   }
   get result() {
     const { recordList } = this;
-    if (recordList.length === 0) {
-      return [];
-    }
     const newList = clone(recordList)
       .filter((r) => r.type === this.recordType)
       .sort(
         (a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf()
       );
+    if (recordList.length === 0) {
+      return [];
+    }
     type GroupedList = { title: string; total?: number; items: RecordItem[] }[];
     const groupedList: GroupedList = [
       {

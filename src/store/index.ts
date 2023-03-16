@@ -11,6 +11,7 @@ const store = new Vuex.Store({
   state: {
     recordList: [],
     tagList: [],
+    message: '',
     currentTag: undefined
   } as RootState,
   mutations: {
@@ -39,6 +40,14 @@ const store = new Vuex.Store({
     fetchTags(state) {
       state.tagList = JSON.parse(
         window.localStorage.getItem('tagList') || "[]");
+      if (state.tagList.length === 0 || !state.tagList) {
+        store.commit('createTag', { name: '其他', icon: 'others' });
+        store.commit('createTag', { name: '购物消费', icon: 'shopping' });
+        store.commit('createTag', { name: '美食餐饮', icon: 'food' });
+        store.commit('createTag', { name: '休闲娱乐', icon: 'entertainment' });
+        store.commit('createTag', { name: '医疗服务', icon: 'medicalSupplies' });
+        store.commit('createTag', { name: '购物消费', icon: 'shopping' });
+      }
     },
     createTag(state, payload: { name: string, icon: string }) {
       const { name, icon } = payload;
@@ -52,17 +61,17 @@ const store = new Vuex.Store({
         const nameInData = state.tagList.map(value => value.name);
         const nameInDataSet = [...new Set(nameInData)];
         if (nameInDataSet.indexOf(x.name) >= 0) {
-          window.alert("标签名重复了，请重新输入！");
+          state.message = 'duplicated';
         } else {
           state.tagList.push(x);
           store.commit('saveTags');
-          window.alert("添加成功！");
+          state.message = 'success'
           router.back();
         }
       } else if (!name) {
-        window.alert("请输入标签名！");
+        state.message = 'no name'
       } else if (icon === "" || icon === null || icon === undefined) {
-        window.alert("请选择标签图标！");
+        state.message = 'no icon'
       }
     },
     saveTags(state) {
